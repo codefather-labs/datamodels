@@ -49,3 +49,38 @@ except Exception as e:
 
 else:
     print("--- 'Dynamic types' option works clear")
+
+try:
+    request = Request(
+        data={},
+        producer=1,
+        consumer=2,
+        readonly=True
+    )
+    request.update(data={
+        "produced": 3
+    })
+except exceptions.ReadOnlyAccessError:
+    print("--- 'Readonly' option works clear")
+
+request = Request(
+    data={},
+    producer=1,
+    consumer=2,
+)
+assert request.update(data={}) is None
+
+try:
+    request.update({
+        "producer": "3"
+    })
+except exceptions.InvalidType:
+    print("--- Invalid types check works clear")
+
+request.update({
+    "producer": 3
+})
+
+assert request.data == {}
+assert request.consumer == 2
+assert request.producer == 3

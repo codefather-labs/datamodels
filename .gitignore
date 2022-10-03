@@ -130,3 +130,6 @@ dmypy.json
 .idea
 __pycache__/
 *__pycache__/*
+dist
+build
+datamodels.egg-info
