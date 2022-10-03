@@ -33,6 +33,25 @@ class DataModel:
 
             self.update_value(k, v)
 
+    def __setitem__(self, key, value):
+        if self.readonly:
+            raise exceptions.ReadOnlyAccessError(self)
+
+        if self.statictypes:
+            if not self.__data.get(key):
+                raise exceptions.InvalidType(
+                    f"{key} can't assign undeclared "
+                    f"attributes after initialization"
+                )
+
+            if not isinstance(value, type(self.__data.get(key))):
+                raise exceptions.InvalidType(
+                    f"Can't assign undeclared type of "
+                    f"attribute '{key}'"
+                )
+
+        self.__dict__[key] = value
+
     @property
     def readonly(self) -> bool:
         return self.__readonly
@@ -45,8 +64,7 @@ class DataModel:
         return self.__allow_none
 
     def update_value(self, k, v):
-        setattr(self, k, v)
-
+        self.__setattr__(k, v)
         self.__data.update({k: v})
 
     def update(self, data: dict):
