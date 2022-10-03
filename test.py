@@ -18,7 +18,7 @@ except Exception as e:
     exit(e)
 
 else:
-    print("--- Base case works clear")
+    print("--- Testcase: Base case works clear")
 
 ##########################################
 
@@ -27,7 +27,7 @@ try:
         data={}, producer=1, consumer=None, allow_none=False
     )
 except exceptions.InvalidType:
-    print("--- Allow None option works clear")
+    print("--- Testcase: Allow None option works clear")
 
 ##########################################
 
@@ -36,7 +36,7 @@ try:
         data={}, producer=1, consumer="2"
     )
 except exceptions.InvalidType:
-    print("--- Static types option works clear")
+    print("--- Testcase: Static types option works clear")
 
 ##########################################
 
@@ -48,7 +48,7 @@ except Exception as e:
     print(e)
 
 else:
-    print("--- Dynamic types option works clear")
+    print("--- Testcase: Dynamic types option works clear")
 
 try:
     request = Request(
@@ -61,7 +61,7 @@ try:
         "produced": 3
     })
 except exceptions.ReadOnlyAccessError:
-    print("--- Readonly option works clear")
+    print("--- Testcase: Readonly option works clear")
 
 request = Request(
     data={},
@@ -75,7 +75,7 @@ try:
         "producer": "3"
     })
 except exceptions.InvalidType:
-    print("--- Invalid types check works clear")
+    print("--- Testcase: Invalid types check works clear")
 
 request.update({
     "producer": 3
