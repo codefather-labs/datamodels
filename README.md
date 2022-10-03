@@ -4,7 +4,7 @@ Ideomatic and lightweight Python dataclasses inspired by [Pydantic](https://gith
 
 - Installation `pip install git+https://github.com/codefather-labs/datamodels.git`
 
-```pycon
+```python
 from datamodels import DataModel
 from datamodels import exceptions
 
@@ -20,17 +20,17 @@ request = Request(
     producer=1,
     consumer=2,
 )
->>> <Request data: dict={}, producer: int=1, consumer: int=2>
+>>> "<Request data: dict={}, producer: int=1, consumer: int=2>"
 ```
 
-```pycon
+```python
 # statictypes by default is True
 request = Request(
     data={}, 
     producer=1, 
     consumer="2",
 )
->>> datamodels.exceptions.InvalidType: consumer expected <class 'int'> got <class 'str'>
+>>> "datamodels.exceptions.InvalidType: consumer expected <class 'int'> got <class 'str'>"
 
 request = Request(
     data={}, 
@@ -41,10 +41,10 @@ request = Request(
 request.update({
     "producer": "3"
 })
->>> datamodels.exceptions.InvalidType: Can't assign undeclared type of attribute 'producer'
+>>> "datamodels.exceptions.InvalidType: Can't assign undeclared type of attribute 'producer'"
 ```
 
-```pycon
+```python
 # readonly by default is False
 request = Request(
     data={},
@@ -55,7 +55,7 @@ request = Request(
 request.update({
     "producer": 3
 })
->>> <Request data: dict={}, producer: int=3, consumer: int=2>
+>>> "<Request data: dict={}, producer: int=3, consumer: int=2>"
 
 request = Request(
     data={},
@@ -67,7 +67,7 @@ request = Request(
 request.update({
     "producer": 3
 })
->>> datamodels.exceptions.ReadOnlyAccessError: <Request data: dict={}, producer: int=1, consumer: int=2 readonly>
+>>> "datamodels.exceptions.ReadOnlyAccessError: <Request data: dict={}, producer: int=1, consumer: int=2 readonly>"
 ```
 
 More examples at test.py
