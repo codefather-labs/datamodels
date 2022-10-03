@@ -1,6 +1,8 @@
 # datamodels
 
-Idiomatic Python Dataclasses inspired by Pydantic
+Ideomatic and lightweight Python dataclasses inspired by Pydantic
+
+- Installation `pip install git+https://github.com/codefather-labs/datamodels.git`
 
 ```python
 from datamodels import DataModel
@@ -12,4 +14,9 @@ class Request(DataModel):
     producer: int
     consumer: int
     
+request = Request(
+    data={},
+    producer=1,
+    consumer=2,
+)
 ```
