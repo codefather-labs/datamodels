@@ -8,3 +8,5 @@ setup(
     packages=["datamodels"],
     maintainer=__author__,
 )
+
+from test import *
