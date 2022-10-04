@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from datamodels import DataModel
 from datamodels import exceptions
 
@@ -7,6 +9,21 @@ class Request(DataModel):
     producer: int
     consumer: int
 
+
+class Node(DataModel):
+    id: UUID
+    host: str
+
+
+class TransportMessage(DataModel):
+    id: UUID
+    callback_id: UUID
+    sender: Node
+    receiver: Node
+    body: dict
+
+
+message = TransportMessage(allow_none=True, readonly=True)
 
 try:
     Request(

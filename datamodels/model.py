@@ -60,6 +60,7 @@ class DataModel:
     def statictypes(self) -> bool:
         return self.__statictypes
 
+    @property
     def allow_none(self) -> bool:
         return self.__allow_none
 
